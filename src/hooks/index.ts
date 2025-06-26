@@ -21,7 +21,8 @@ export const useLocalStorage = <T>(
   // 设置值的函数
   const setValue = (value: T | ((val: T) => T)) => {
     try {
-      const valueToStore = value instanceof Function ? value(storedValue) : value
+      const valueToStore =
+        value instanceof Function ? value(storedValue) : value
       setStoredValue(valueToStore)
       window.localStorage.setItem(key, JSON.stringify(valueToStore))
     } catch (error) {
@@ -57,14 +58,14 @@ export const useDebounce = <T>(value: T, delay: number): T => {
 export const useWindowSize = () => {
   const [windowSize, setWindowSize] = useState({
     width: window.innerWidth,
-    height: window.innerHeight
+    height: window.innerHeight,
   })
 
   useEffect(() => {
     const handleResize = () => {
       setWindowSize({
         width: window.innerWidth,
-        height: window.innerHeight
+        height: window.innerHeight,
       })
     }
 
@@ -82,7 +83,9 @@ export const useAsync = <T, E = string>(
   asyncFunction: () => Promise<T>,
   immediate = true
 ) => {
-  const [status, setStatus] = useState<'idle' | 'pending' | 'success' | 'error'>('idle')
+  const [status, setStatus] = useState<
+    'idle' | 'pending' | 'success' | 'error'
+  >('idle')
   const [data, setData] = useState<T | null>(null)
   const [error, setError] = useState<E | null>(null)
 

@@ -1,4 +1,9 @@
-import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse, AxiosError } from 'axios'
+import axios, {
+  AxiosInstance,
+  AxiosRequestConfig,
+  AxiosResponse,
+  AxiosError,
+} from 'axios'
 import { message } from 'antd'
 
 /**
@@ -8,8 +13,8 @@ const config: AxiosRequestConfig = {
   baseURL: import.meta.env.VITE_API_BASE_URL || '/api',
   timeout: 10000,
   headers: {
-    'Content-Type': 'application/json'
-  }
+    'Content-Type': 'application/json',
+  },
 }
 
 /**
@@ -21,16 +26,16 @@ const service: AxiosInstance = axios.create(config)
  * 请求拦截器
  */
 service.interceptors.request.use(
-  (config) => {
+  config => {
     // 可以在这里添加 token
     const token = localStorage.getItem('token')
     if (token) {
       config.headers!['Authorization'] = `Bearer ${token}`
     }
-    
+
     // 显示加载提示（可选）
     // message.loading('请求中...', 0)
-    
+
     return config
   },
   (error: AxiosError) => {
@@ -46,9 +51,9 @@ service.interceptors.response.use(
   (response: AxiosResponse) => {
     // 隐藏加载提示
     // message.destroy()
-    
+
     const { data } = response
-    
+
     // 根据后端返回的状态码进行不同处理
     if (data.code === 200 || data.success) {
       return data
@@ -61,13 +66,13 @@ service.interceptors.response.use(
   (error: AxiosError) => {
     // 隐藏加载提示
     // message.destroy()
-    
+
     console.error('Response error:', error)
-    
+
     // HTTP 错误处理
     if (error.response) {
       const { status, data } = error.response
-      
+
       switch (status) {
         case 401:
           message.error('未授权，请重新登录')
@@ -92,7 +97,7 @@ service.interceptors.response.use(
     } else {
       message.error('请求配置错误')
     }
-    
+
     return Promise.reject(error)
   }
 )

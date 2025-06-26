@@ -7,15 +7,14 @@ import autoprefixer from 'autoprefixer'
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [
-    react(),
-    UnoCSS()
-  ],
+  plugins: [react(), UnoCSS()],
   resolve: {
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url)),
       '@/assets': fileURLToPath(new URL('./src/assets', import.meta.url)),
-      '@/components': fileURLToPath(new URL('./src/components', import.meta.url)),
+      '@/components': fileURLToPath(
+        new URL('./src/components', import.meta.url)
+      ),
       '@/pages': fileURLToPath(new URL('./src/pages', import.meta.url)),
       '@/views': fileURLToPath(new URL('./src/views', import.meta.url)),
       '@/layouts': fileURLToPath(new URL('./src/layouts', import.meta.url)),
@@ -27,21 +26,19 @@ export default defineConfig({
       '@/store': fileURLToPath(new URL('./src/store', import.meta.url)),
       '@/styles': fileURLToPath(new URL('./src/styles', import.meta.url)),
       '@/constants': fileURLToPath(new URL('./src/constants', import.meta.url)),
-      '@/config': fileURLToPath(new URL('./src/config', import.meta.url))
-    }
+      '@/config': fileURLToPath(new URL('./src/config', import.meta.url)),
+    },
   },
   css: {
     preprocessorOptions: {
       scss: {
         additionalData: `@import "@/styles/variables.scss";`,
-        javascriptEnabled: true
-      }
+        javascriptEnabled: true,
+      },
     },
     postcss: {
-      plugins: [
-        autoprefixer()
-      ]
-    }
+      plugins: [autoprefixer()],
+    },
   },
   server: {
     port: 3000,
@@ -50,9 +47,9 @@ export default defineConfig({
       '/api': {
         target: 'http://localhost:8000',
         changeOrigin: true,
-        rewrite: (path) => path.replace(/^\/api/, '')
-      }
-    }
+        rewrite: path => path.replace(/^\/api/, ''),
+      },
+    },
   },
   build: {
     outDir: 'dist',
@@ -63,7 +60,7 @@ export default defineConfig({
         chunkFileNames: 'js/[name]-[hash].js',
         entryFileNames: 'js/[name]-[hash].js',
         assetFileNames: '[ext]/[name]-[hash].[ext]',
-        manualChunks: (id) => {
+        manualChunks: id => {
           // 将 node_modules 中的依赖分类
           if (id.includes('node_modules')) {
             // React 核心库
@@ -92,8 +89,8 @@ export default defineConfig({
             }
             // 工具库
             if (
-              id.includes('lodash') || 
-              id.includes('dayjs') || 
+              id.includes('lodash') ||
+              id.includes('dayjs') ||
               id.includes('classnames') ||
               id.includes('scroll-into-view')
             ) {
@@ -101,7 +98,7 @@ export default defineConfig({
             }
             // CSS 相关
             if (
-              id.includes('@emotion') || 
+              id.includes('@emotion') ||
               id.includes('stylis') ||
               id.includes('@ant-design/cssinjs')
             ) {
@@ -110,10 +107,10 @@ export default defineConfig({
             // 其他第三方库
             return 'vendor'
           }
-        }
-      }
+        },
+      },
     },
     // 设置 chunk 大小警告限制
-    chunkSizeWarningLimit: 1000
-  }
+    chunkSizeWarningLimit: 1000,
+  },
 })

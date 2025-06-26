@@ -22,7 +22,7 @@
 - 🎨 **Ant Design** - 现代化的 UI 组件库
 - 📱 **移动端适配** - px2rem 自动转换，支持响应式设计
 - 🔥 **热更新** - 极速的开发体验
--  **完善的开发工具** - ESLint、Prettier、TypeScript 配置
+- **完善的开发工具** - ESLint、Prettier、TypeScript 配置
 - 📁 **清晰的项目结构** - 易于维护和扩展
 - 🔧 **路径别名** - 便捷的模块导入
 - 🌐 **代理服务器** - 本地开发 API 代理
@@ -31,25 +31,25 @@
 
 \`\`\`
 src/
-├── api/            # API 接口定义
-├── assets/         # 静态资源
-├── components/     # 可复用组件
-│   ├── Layout/     # 布局组件
-│   └── ...
-├── config/         # 项目配置
-├── constants/      # 常量定义
-├── hooks/          # 自定义 Hooks
-├── pages/          # 页面组件
-│   ├── Home/
-│   └── About/
-├── services/       # 服务层 (Axios 配置)
-├── styles/         # 样式文件
-│   ├── global.css
-│   └── variables.scss
-├── types/          # TypeScript 类型定义
-├── utils/          # 工具函数
-│   └── mobile.ts   # 移动端适配工具
-└── main.tsx        # 应用入口
+├── api/ # API 接口定义
+├── assets/ # 静态资源
+├── components/ # 可复用组件
+│ ├── Layout/ # 布局组件
+│ └── ...
+├── config/ # 项目配置
+├── constants/ # 常量定义
+├── hooks/ # 自定义 Hooks
+├── pages/ # 页面组件
+│ ├── Home/
+│ └── About/
+├── services/ # 服务层 (Axios 配置)
+├── styles/ # 样式文件
+│ ├── global.css
+│ └── variables.scss
+├── types/ # TypeScript 类型定义
+├── utils/ # 工具函数
+│ └── mobile.ts # 移动端适配工具
+└── main.tsx # 应用入口
 \`\`\`
 
 ## 🛠 开发
@@ -158,14 +158,14 @@ npm run type-check
 import { Button, Card, Space } from 'antd'
 
 const MyComponent = () => {
-  return (
-    <Card title="示例">
-      <Space>
-        <Button type="primary">主按钮</Button>
-        <Button>默认按钮</Button>
-      </Space>
-    </Card>
-  )
+return (
+<Card title="示例">
+<Space>
+<Button type="primary">主按钮</Button>
+<Button>默认按钮</Button>
+</Space>
+</Card>
+)
 }
 \`\`\`
 
@@ -174,6 +174,7 @@ const MyComponent = () => {
 项目集成了 UnoCSS，可以使用原子化 CSS 类名：
 
 \`\`\`jsx
+
 <div className="flex items-center justify-center p-4 bg-blue-500 text-white rounded-lg">
   Hello World
 </div>
@@ -188,14 +189,14 @@ import { get, post } from '@/services/request'
 
 // GET 请求
 const fetchUsers = async () => {
-  const response = await get('/users')
-  return response
+const response = await get('/users')
+return response
 }
 
 // POST 请求
 const createUser = async (userData: any) => {
-  const response = await post('/users', userData)
-  return response
+const response = await post('/users', userData)
+return response
 }
 \`\`\`
 
@@ -207,11 +208,11 @@ const createUser = async (userData: any) => {
 import { useLocalStorage, useDebounce, useWindowSize } from '@/hooks'
 
 const MyComponent = () => {
-  const [value, setValue] = useLocalStorage('key', 'defaultValue')
-  const debouncedValue = useDebounce(inputValue, 300)
-  const { width, height } = useWindowSize()
-  
-  // ...
+const [value, setValue] = useLocalStorage('key', 'defaultValue')
+const debouncedValue = useDebounce(inputValue, 300)
+const { width, height } = useWindowSize()
+
+// ...
 }
 \`\`\`
 
@@ -223,8 +224,8 @@ const MyComponent = () => {
 
 \`\`\`typescript
 export const THEME_CONFIG = {
-  primaryColor: '#1890ff', // 修改主色调
-  // ...
+primaryColor: '#1890ff', // 修改主色调
+// ...
 }
 \`\`\`
 

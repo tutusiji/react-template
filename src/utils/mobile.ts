@@ -9,24 +9,28 @@
 export const setRemUnit = () => {
   const docEl = document.documentElement
   const clientWidth = docEl.clientWidth
-  
+
   if (!clientWidth) return
-  
+
   // 设计稿宽度，可根据实际项目调整
   const designWidth = 375
-  
+
   // 计算 rem 基准值
-  const remUnit = clientWidth / designWidth * 37.5
-  
+  const remUnit = (clientWidth / designWidth) * 37.5
+
   docEl.style.fontSize = remUnit + 'px'
 }
 
 /**
  * 防抖函数，用于窗口大小改变时的处理
  */
-const debounce = (func: Function, wait: number) => {
+// 将 Function 类型替换为具体函数类型
+const debounce = <T extends (...args: any[]) => void>(
+  func: T,
+  wait: number
+) => {
   let timeout: NodeJS.Timeout
-  return function executedFunction(...args: any[]) {
+  return function executedFunction(...args: Parameters<T>) {
     const later = () => {
       clearTimeout(timeout)
       func(...args)
@@ -42,15 +46,15 @@ const debounce = (func: Function, wait: number) => {
 export const initMobileAdaptation = () => {
   // 设置初始 rem 值
   setRemUnit()
-  
+
   // 监听窗口大小变化
   const debouncedSetRemUnit = debounce(setRemUnit, 300)
   window.addEventListener('resize', debouncedSetRemUnit)
   window.addEventListener('orientationchange', debouncedSetRemUnit)
-  
+
   // 页面加载完成后再次设置
   document.addEventListener('DOMContentLoaded', setRemUnit)
-  
+
   return () => {
     window.removeEventListener('resize', debouncedSetRemUnit)
     window.removeEventListener('orientationchange', debouncedSetRemUnit)
@@ -75,13 +79,13 @@ export const getDeviceInfo = () => {
   const isAndroid = /Android/.test(ua)
   const isMobile = isIOS || isAndroid
   const isWechat = /MicroMessenger/.test(ua)
-  
+
   return {
     isIOS,
     isAndroid,
     isMobile,
     isWechat,
-    userAgent: ua
+    userAgent: ua,
   }
 }
 
@@ -91,7 +95,7 @@ export const getDeviceInfo = () => {
 export const getViewportSize = () => {
   return {
     width: window.innerWidth || document.documentElement.clientWidth,
-    height: window.innerHeight || document.documentElement.clientHeight
+    height: window.innerHeight || document.documentElement.clientHeight,
   }
 }
 
@@ -99,7 +103,9 @@ export const getViewportSize = () => {
  * 判断是否为移动端
  */
 export const isMobileDevice = (): boolean => {
-  return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)
+  return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
+    navigator.userAgent
+  )
 }
 
 /**

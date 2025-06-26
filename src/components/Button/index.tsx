@@ -15,16 +15,16 @@ const Button = ({
   size = 'md',
   disabled = false,
   loading = false,
-  onClick
+  onClick,
 }: ButtonProps) => {
   const [isClicked, setIsClicked] = useState(false)
 
   const handleClick = () => {
     if (disabled || loading) return
-    
+
     setIsClicked(true)
     onClick?.()
-    
+
     setTimeout(() => {
       setIsClicked(false)
     }, 150)
@@ -70,8 +70,8 @@ const Button = ({
       onClick={handleClick}
     >
       {loading ? (
-        <div className="flex items-center space-x-2">
-          <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+        <div className='flex items-center space-x-2'>
+          <div className='w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin'></div>
           <span>加载中...</span>
         </div>
       ) : (

@@ -1,4 +1,10 @@
-import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react'
+import React, {
+  createContext,
+  useContext,
+  useState,
+  useEffect,
+  ReactNode,
+} from 'react'
 
 interface User {
   username: string
@@ -34,7 +40,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     // 检查本地存储中的登录状态
     const isLoggedIn = localStorage.getItem('isLoggedIn')
     const userInfo = localStorage.getItem('userInfo')
-    
+
     if (isLoggedIn === 'true' && userInfo) {
       try {
         const parsedUser = JSON.parse(userInfo)

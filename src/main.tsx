@@ -19,5 +19,5 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
         </AuthProvider>
       </BrowserRouter>
     </ConfigProvider>
-  </React.StrictMode>,
+  </React.StrictMode>
 )

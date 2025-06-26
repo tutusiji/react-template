@@ -43,17 +43,13 @@ const buildUrlParams = (params: Record<string, string | number>): string => {
 /**
  * HTTP 请求封装
  */
-const request = async <T = unknown>(config: RequestConfig): Promise<ApiResponse<T>> => {
-  const {
-    url,
-    method = 'GET',
-    data,
-    params,
-    headers = {}
-  } = config
+const request = async <T = unknown>(
+  config: RequestConfig
+): Promise<ApiResponse<T>> => {
+  const { url, method = 'GET', data, params, headers = {} } = config
 
   let requestUrl = `${API_BASE_URL}${url}`
-  
+
   // 处理 URL 参数
   if (params && Object.keys(params).length > 0) {
     const queryString = buildUrlParams(params)
@@ -64,8 +60,8 @@ const request = async <T = unknown>(config: RequestConfig): Promise<ApiResponse<
     method,
     headers: {
       'Content-Type': 'application/json',
-      ...headers
-    }
+      ...headers,
+    },
   }
 
   // 处理请求体
@@ -75,11 +71,11 @@ const request = async <T = unknown>(config: RequestConfig): Promise<ApiResponse<
 
   try {
     const response = await fetch(requestUrl, requestOptions)
-    
+
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`)
     }
-    
+
     const result = await response.json()
     return result as ApiResponse<T>
   } catch (error) {

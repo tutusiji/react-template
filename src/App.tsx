@@ -15,13 +15,15 @@ const OperationPanel = React.lazy(() => import('@/pages/OperationPanel'))
 
 // 加载中组件
 const PageLoading: React.FC = () => (
-  <div style={{ 
-    display: 'flex', 
-    justifyContent: 'center', 
-    alignItems: 'center', 
-    height: '50vh' 
-  }}>
-    <Spin size="large" />
+  <div
+    style={{
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center',
+      height: '50vh',
+    }}
+  >
+    <Spin size='large' />
   </div>
 )
 
@@ -31,12 +33,14 @@ function App() {
   return (
     <Suspense fallback={<PageLoading />}>
       <Routes>
-        <Route 
-          path="/login" 
-          element={isAuthenticated ? <Navigate to="/dashboard" replace /> : <Login />} 
+        <Route
+          path='/login'
+          element={
+            isAuthenticated ? <Navigate to='/dashboard' replace /> : <Login />
+          }
         />
         <Route
-          path="/"
+          path='/'
           element={
             <ProtectedRoute>
               <Layout>
@@ -46,7 +50,7 @@ function App() {
           }
         />
         <Route
-          path="/dashboard"
+          path='/dashboard'
           element={
             <ProtectedRoute>
               <Layout>
@@ -56,7 +60,7 @@ function App() {
           }
         />
         <Route
-          path="/about"
+          path='/about'
           element={
             <ProtectedRoute>
               <Layout>
@@ -66,7 +70,7 @@ function App() {
           }
         />
         <Route
-          path="/api-demo"
+          path='/api-demo'
           element={
             <ProtectedRoute>
               <Layout>
@@ -76,7 +80,7 @@ function App() {
           }
         />
         <Route
-          path="/operation-panel"
+          path='/operation-panel'
           element={
             <ProtectedRoute>
               <Layout>

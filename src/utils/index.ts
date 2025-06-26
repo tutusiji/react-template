@@ -23,7 +23,7 @@ export const debounce = <T extends (...args: unknown[]) => void>(
   wait: number
 ): ((...args: Parameters<T>) => void) => {
   let timeout: NodeJS.Timeout | null = null
-  
+
   return (...args: Parameters<T>) => {
     if (timeout) clearTimeout(timeout)
     timeout = setTimeout(() => func(...args), wait)
@@ -38,12 +38,12 @@ export const throttle = <T extends (...args: unknown[]) => void>(
   wait: number
 ): ((...args: Parameters<T>) => void) => {
   let inThrottle = false
-  
+
   return (...args: Parameters<T>) => {
     if (!inThrottle) {
       func(...args)
       inThrottle = true
-      setTimeout(() => inThrottle = false, wait)
+      setTimeout(() => (inThrottle = false), wait)
     }
   }
 }
@@ -117,6 +117,8 @@ export const isEmpty = (value: unknown): boolean => {
 /**
  * 合并类名
  */
-export const classNames = (...classes: (string | undefined | null | boolean)[]): string => {
+export const classNames = (
+  ...classes: (string | undefined | null | boolean)[]
+): string => {
   return classes.filter(Boolean).join(' ')
 }

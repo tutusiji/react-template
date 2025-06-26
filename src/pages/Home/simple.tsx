@@ -15,31 +15,29 @@ const Home = () => {
         </Paragraph>
       </div>
 
-      <Card title="计数器示例" style={{ textAlign: 'center' }}>
+      <Card title='计数器示例' style={{ textAlign: 'center' }}>
         <div style={{ marginBottom: '16px' }}>
-          <span style={{ fontSize: '32px', fontWeight: 'bold', color: '#1890ff' }}>
+          <span
+            style={{ fontSize: '32px', fontWeight: 'bold', color: '#1890ff' }}
+          >
             {count}
           </span>
         </div>
         <div>
-          <Button 
+          <Button
             style={{ marginRight: '8px' }}
             onClick={() => setCount(count - 1)}
           >
             -1
           </Button>
-          <Button 
-            type="primary"
+          <Button
+            type='primary'
             style={{ marginRight: '8px' }}
             onClick={() => setCount(0)}
           >
             重置
           </Button>
-          <Button 
-            onClick={() => setCount(count + 1)}
-          >
-            +1
-          </Button>
+          <Button onClick={() => setCount(count + 1)}>+1</Button>
         </div>
       </Card>
     </div>

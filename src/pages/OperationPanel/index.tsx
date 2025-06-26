@@ -1,15 +1,24 @@
 import React, { useRef, useEffect, useState, useCallback } from 'react'
-import { Button, Slider, Switch, Badge, Card, Progress, Space, Tooltip } from 'antd'
-import { 
-  PlayCircleOutlined, 
-  PauseOutlined, 
+import {
+  Button,
+  Slider,
+  Switch,
+  Badge,
+  Card,
+  Progress,
+  Space,
+  Tooltip,
+} from 'antd'
+import {
+  PlayCircleOutlined,
+  PauseOutlined,
   StopOutlined,
   ReloadOutlined,
   SettingOutlined,
   ExpandOutlined,
   ShrinkOutlined,
   EyeOutlined,
-  CameraOutlined
+  CameraOutlined,
 } from '@ant-design/icons'
 import './index.scss'
 
@@ -25,10 +34,10 @@ const OperationPanel: React.FC<OperationPanelProps> = () => {
   const [brightness, setBrightness] = useState(100)
   const [isRecording, setIsRecording] = useState(false)
   const [objectInfo] = useState({
-    width: 4.50,
-    height: 6.50,
-    depth: 2.80,
-    volume: 82.25
+    width: 4.5,
+    height: 6.5,
+    depth: 2.8,
+    volume: 82.25,
   })
 
   // 模拟图片序列帧
@@ -58,7 +67,7 @@ const OperationPanel: React.FC<OperationPanelProps> = () => {
     }
 
     loadFrames()
-    
+
     // 绘制初始帧
     drawFrame(0)
   }, [totalFrames])
@@ -70,7 +79,7 @@ const OperationPanel: React.FC<OperationPanelProps> = () => {
     if (!canvas || !ctx) return
 
     ctx.clearRect(0, 0, canvas.width, canvas.height)
-    
+
     const img = frameImages.current[frameIndex]
     if (img && img.complete) {
       ctx.drawImage(img, 0, 0, canvas.width, canvas.height)
@@ -78,7 +87,7 @@ const OperationPanel: React.FC<OperationPanelProps> = () => {
       // 绘制占位背景
       ctx.fillStyle = '#1a1a1a'
       ctx.fillRect(0, 0, canvas.width, canvas.height)
-      
+
       // 绘制网格
       ctx.strokeStyle = '#333'
       ctx.lineWidth = 1
@@ -94,15 +103,19 @@ const OperationPanel: React.FC<OperationPanelProps> = () => {
         ctx.lineTo(canvas.width, y)
         ctx.stroke()
       }
-      
+
       // 绘制中心标记
       ctx.fillStyle = '#4CAF50'
       ctx.fillRect(canvas.width / 2 - 50, canvas.height / 2 - 50, 100, 100)
-      
+
       ctx.fillStyle = '#fff'
       ctx.font = '16px Arial'
       ctx.textAlign = 'center'
-      ctx.fillText(`Frame ${frameIndex + 1}`, canvas.width / 2, canvas.height / 2)
+      ctx.fillText(
+        `Frame ${frameIndex + 1}`,
+        canvas.width / 2,
+        canvas.height / 2
+      )
     }
   }, [])
 
@@ -157,15 +170,12 @@ const OperationPanel: React.FC<OperationPanelProps> = () => {
   return (
     <div className={`operation-panel ${isFullscreen ? 'fullscreen' : ''}`}>
       {/* Canvas背景视频 */}
-      <canvas
-        ref={canvasRef}
-        className="background-canvas"
-      />
-      
+      <canvas ref={canvasRef} className='background-canvas' />
+
       {/* 顶部工具栏 */}
-      <div className="top-toolbar">
-        <div className="toolbar-left">
-          <Badge count={isRecording ? '●' : 0} color="red">
+      <div className='top-toolbar'>
+        <div className='toolbar-left'>
+          <Badge count={isRecording ? '●' : 0} color='red'>
             <Button
               type={isRecording ? 'primary' : 'default'}
               icon={<CameraOutlined />}
@@ -175,23 +185,17 @@ const OperationPanel: React.FC<OperationPanelProps> = () => {
               {isRecording ? '录制中' : '录制'}
             </Button>
           </Badge>
-          <Button icon={<EyeOutlined />}>
-            视觉
-          </Button>
-          <Switch
-            checkedChildren="AR"
-            unCheckedChildren="2D"
-            defaultChecked
-          />
+          <Button icon={<EyeOutlined />}>视觉</Button>
+          <Switch checkedChildren='AR' unCheckedChildren='2D' defaultChecked />
         </div>
-        
-        <div className="toolbar-center">
-          <span className="frame-info">
+
+        <div className='toolbar-center'>
+          <span className='frame-info'>
             Frame {currentFrame + 1} / {totalFrames}
           </span>
         </div>
-        
-        <div className="toolbar-right">
+
+        <div className='toolbar-right'>
           <Button
             icon={isFullscreen ? <ShrinkOutlined /> : <ExpandOutlined />}
             onClick={toggleFullscreen}
@@ -201,132 +205,135 @@ const OperationPanel: React.FC<OperationPanelProps> = () => {
       </div>
 
       {/* 左侧信息面板 */}
-      <div className="left-panel">
-        <Card title="对象信息" size="small" className="info-card">
-          <div className="object-info">
-            <div className="info-item">
-              <span className="label">宽度:</span>
-              <span className="value">{objectInfo.width}</span>
+      <div className='left-panel'>
+        <Card title='对象信息' size='small' className='info-card'>
+          <div className='object-info'>
+            <div className='info-item'>
+              <span className='label'>宽度:</span>
+              <span className='value'>{objectInfo.width}</span>
             </div>
-            <div className="info-item">
-              <span className="label">高度:</span>
-              <span className="value">{objectInfo.height}</span>
+            <div className='info-item'>
+              <span className='label'>高度:</span>
+              <span className='value'>{objectInfo.height}</span>
             </div>
-            <div className="info-item">
-              <span className="label">深度:</span>
-              <span className="value">{objectInfo.depth}</span>
+            <div className='info-item'>
+              <span className='label'>深度:</span>
+              <span className='value'>{objectInfo.depth}</span>
             </div>
-            <div className="info-item">
-              <span className="label">体积:</span>
-              <span className="value">{objectInfo.volume}</span>
+            <div className='info-item'>
+              <span className='label'>体积:</span>
+              <span className='value'>{objectInfo.volume}</span>
             </div>
           </div>
         </Card>
 
-        <Card title="状态监控" size="small" className="info-card">
-          <div className="status-info">
-            <div className="status-item">
-              <span className="status-label">连接状态</span>
-              <Badge status="success" text="正常" />
+        <Card title='状态监控' size='small' className='info-card'>
+          <div className='status-info'>
+            <div className='status-item'>
+              <span className='status-label'>连接状态</span>
+              <Badge status='success' text='正常' />
             </div>
-            <div className="status-item">
-              <span className="status-label">处理进度</span>
-              <Progress percent={75} size="small" />
+            <div className='status-item'>
+              <span className='status-label'>处理进度</span>
+              <Progress percent={75} size='small' />
             </div>
           </div>
         </Card>
       </div>
 
       {/* 右侧控制面板 */}
-      <div className="right-panel">
-        <Card title="操作控制" size="small" className="control-card">
-          <Space direction="vertical" style={{ width: '100%' }}>
-            <div className="control-group">
-              <span className="control-label">亮度</span>
+      <div className='right-panel'>
+        <Card title='操作控制' size='small' className='control-card'>
+          <Space direction='vertical' style={{ width: '100%' }}>
+            <div className='control-group'>
+              <span className='control-label'>亮度</span>
               <Slider
                 value={brightness}
                 onChange={setBrightness}
                 min={0}
                 max={200}
-                tooltip={{ formatter: (value) => `${value}%` }}
+                tooltip={{ formatter: value => `${value}%` }}
               />
             </div>
-            <div className="control-group">
-              <span className="control-label">音量</span>
+            <div className='control-group'>
+              <span className='control-label'>音量</span>
               <Slider
                 value={volume}
                 onChange={setVolume}
                 min={0}
                 max={100}
-                tooltip={{ formatter: (value) => `${value}%` }}
+                tooltip={{ formatter: value => `${value}%` }}
               />
             </div>
           </Space>
         </Card>
 
-        <div className="action-buttons">
-          <Tooltip title="重置">
+        <div className='action-buttons'>
+          <Tooltip title='重置'>
             <Button icon={<ReloadOutlined />} />
           </Tooltip>
-          <Tooltip title="暂停">
+          <Tooltip title='暂停'>
             <Button icon={<PauseOutlined />} />
           </Tooltip>
-          <Tooltip title="旋转">
+          <Tooltip title='旋转'>
             <Button icon={<ReloadOutlined />} />
           </Tooltip>
         </div>
       </div>
 
       {/* 底部控制栏 */}
-      <div className="bottom-controls">
-        <div className="playback-controls">
+      <div className='bottom-controls'>
+        <div className='playback-controls'>
           <Button
-            type="primary"
+            type='primary'
             icon={isPlaying ? <PauseOutlined /> : <PlayCircleOutlined />}
             onClick={handlePlay}
-            size="large"
+            size='large'
           >
             {isPlaying ? '暂停' : '播放'}
           </Button>
-          <Button
-            icon={<StopOutlined />}
-            onClick={handleStop}
-            size="large"
-          >
+          <Button icon={<StopOutlined />} onClick={handleStop} size='large'>
             停止
           </Button>
         </div>
 
-        <div className="timeline-container">
+        <div className='timeline-container'>
           <Slider
             min={0}
             max={totalFrames - 1}
             value={currentFrame}
             onChange={handleFrameChange}
-            tooltip={{ formatter: (value) => `帧 ${(value || 0) + 1}` }}
-            className="timeline-slider"
+            tooltip={{ formatter: value => `帧 ${(value || 0) + 1}` }}
+            className='timeline-slider'
           />
         </div>
 
-        <div className="frame-info-bottom">
-          <span>{Math.floor(currentFrame / 30)}:{(currentFrame % 30).toString().padStart(2, '0')}</span>
+        <div className='frame-info-bottom'>
+          <span>
+            {Math.floor(currentFrame / 30)}:
+            {(currentFrame % 30).toString().padStart(2, '0')}
+          </span>
         </div>
       </div>
 
       {/* 悬浮操作按钮 */}
-      <div className="floating-controls">
-        <div className="floating-btn-group top-left">
-          <Button shape="circle" icon={<EyeOutlined />} />
-          <Button shape="circle" icon={<CameraOutlined />} />
+      <div className='floating-controls'>
+        <div className='floating-btn-group top-left'>
+          <Button shape='circle' icon={<EyeOutlined />} />
+          <Button shape='circle' icon={<CameraOutlined />} />
         </div>
-        
-        <div className="floating-btn-group top-right">
-          <Button type="primary" shape="circle">IO</Button>
+
+        <div className='floating-btn-group top-right'>
+          <Button type='primary' shape='circle'>
+            IO
+          </Button>
         </div>
-        
-        <div className="floating-btn-group bottom-right">
-          <Button type="primary" size="large">确定</Button>
-          <Button size="large">取消</Button>
+
+        <div className='floating-btn-group bottom-right'>
+          <Button type='primary' size='large'>
+            确定
+          </Button>
+          <Button size='large'>取消</Button>
         </div>
       </div>
     </div>
