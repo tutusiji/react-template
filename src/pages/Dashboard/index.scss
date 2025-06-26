@@ -1,0 +1,437 @@
+.dashboard-container {
+  min-height: 100vh;
+  background: #f5f5f5;
+  padding: 0;
+}
+
+.status-bar {
+  background: #2c3e50;
+  color: white;
+  padding: 12px 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 2px solid #34495e;
+
+  .device-info {
+    display: flex;
+    flex-direction: column;
+    
+    .device-name {
+      font-size: 18px;
+      font-weight: bold;
+      margin-bottom: 4px;
+    }
+    
+    .admin-info {
+      font-size: 12px;
+      opacity: 0.8;
+    }
+  }
+
+  .connection-status {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    
+    .signal-strength {
+      font-size: 12px;
+      opacity: 0.8;
+    }
+  }
+}
+
+.main-content {
+  padding: 24px;
+}
+
+.control-panel {
+  .display-card {
+    .ant-card-head {
+      background: #ecf0f1;
+      border-bottom: 1px solid #bdc3c7;
+    }
+  }
+
+  .display-area {
+    height: 300px;
+    background: #34495e;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: repeating-linear-gradient(
+        90deg,
+        transparent,
+        transparent 1px,
+        rgba(255, 255, 255, 0.1) 1px,
+        rgba(255, 255, 255, 0.1) 2px
+      );
+    }
+
+    .display-content {
+      position: relative;
+      z-index: 1;
+    }
+
+    .display-placeholder {
+      color: white;
+      font-size: 18px;
+      text-align: center;
+      opacity: 0.7;
+    }
+  }
+
+  .module-card {
+    height: 120px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: 2px solid #ecf0f1;
+
+    &:hover {
+      border-color: #3498db;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(52, 152, 219, 0.2);
+    }
+
+    .ant-card-body {
+      padding: 0;
+      height: 100%;
+    }
+
+    .module-content {
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+
+      .module-icon {
+        font-size: 32px;
+        color: #7f8c8d;
+        margin-bottom: 8px;
+      }
+
+      .module-title {
+        font-size: 14px;
+        color: #2c3e50;
+        font-weight: 500;
+      }
+    }
+  }
+}
+
+.device-control-card {
+  height: 460px;
+
+  .ant-card-head {
+    background: #ecf0f1;
+    border-bottom: 1px solid #bdc3c7;
+  }
+
+  .device-display {
+    height: 380px;
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+  }
+
+  .robot-image {
+    width: 280px;
+    height: 280px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .robot-placeholder {
+    width: 200px;
+    height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .robot-body {
+    width: 120px;
+    height: 120px;
+    background: #95a5a6;
+    border-radius: 12px;
+    position: relative;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+
+    .robot-head {
+      width: 40px;
+      height: 30px;
+      background: #7f8c8d;
+      border-radius: 8px;
+      position: absolute;
+      top: -15px;
+      left: 50%;
+      transform: translateX(-50%);
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    }
+
+    .robot-wheels {
+      position: absolute;
+      width: 140px;
+      height: 20px;
+      left: 50%;
+      bottom: -25px;
+      transform: translateX(-50%);
+      display: flex;
+      justify-content: space-between;
+
+      .wheel {
+        width: 20px;
+        height: 20px;
+        background: #34495e;
+        border-radius: 50%;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+      }
+    }
+
+    .robot-arm {
+      width: 60px;
+      height: 8px;
+      background: #7f8c8d;
+      border-radius: 4px;
+      position: absolute;
+      top: 50%;
+      right: -30px;
+      transform: translateY(-50%);
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+
+      &::after {
+        content: '';
+        width: 12px;
+        height: 12px;
+        background: #e74c3c;
+        border-radius: 50%;
+        position: absolute;
+        right: -6px;
+        top: 50%;
+        transform: translateY(-50%);
+      }
+    }
+  }
+}
+
+.function-card {
+  height: 100px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: 2px solid #ecf0f1;
+
+  &:hover {
+    border-color: #3498db;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(52, 152, 219, 0.2);
+  }
+
+  &.task-execution {
+    background: linear-gradient(135deg, #e8f5e8 0%, #d4edda 100%);
+    border-color: #28a745;
+
+    &:hover {
+      border-color: #20c997;
+      box-shadow: 0 4px 12px rgba(40, 167, 69, 0.3);
+    }
+
+    .function-icon {
+      color: #28a745 !important;
+    }
+  }
+
+  .ant-card-body {
+    padding: 0;
+    height: 100%;
+  }
+
+  .function-content {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+
+    .function-icon {
+      font-size: 24px;
+      color: #7f8c8d;
+      margin-bottom: 8px;
+    }
+
+    .function-title {
+      font-size: 14px;
+      color: #2c3e50;
+      font-weight: 500;
+    }
+  }
+}
+
+.ar-module-card {
+  .ant-card-head {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border: none;
+
+    .ant-card-head-title {
+      color: white;
+      font-weight: bold;
+    }
+  }
+
+  .ar-controls {
+    display: flex;
+    justify-content: center;
+    padding: 20px 0;
+
+    .ant-btn-group {
+      .ant-btn {
+        height: 48px;
+        padding: 0 24px;
+        font-size: 16px;
+        margin: 0 8px;
+        border-radius: 8px;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        border: none;
+        color: white;
+        transition: all 0.3s ease;
+
+        &:hover {
+          background: linear-gradient(135deg, #5a6fd8 0%, #6a4190 100%);
+          transform: translateY(-2px);
+          box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+        }
+
+        &:active {
+          transform: translateY(0);
+        }
+      }
+    }
+  }
+}
+
+// 响应式设计
+@media (max-width: 1200px) {
+  .status-bar {
+    flex-direction: column;
+    gap: 8px;
+    text-align: center;
+  }
+
+  .main-content {
+    padding: 16px;
+  }
+}
+
+@media (max-width: 768px) {
+  .main-content {
+    padding: 12px;
+
+    .ant-col {
+      margin-bottom: 16px;
+    }
+  }
+
+  .device-control-card {
+    height: auto;
+
+    .device-display {
+      height: 250px;
+    }
+
+    .robot-image {
+      width: 200px;
+      height: 200px;
+    }
+  }
+
+  .function-card {
+    height: 80px;
+
+    .function-content {
+      .function-icon {
+        font-size: 20px;
+      }
+
+      .function-title {
+        font-size: 12px;
+      }
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .status-bar {
+    padding: 8px 12px;
+
+    .device-name {
+      font-size: 16px !important;
+    }
+
+    .admin-info,
+    .signal-strength {
+      font-size: 10px !important;
+    }
+  }
+
+  .main-content {
+    padding: 8px;
+  }
+
+  .display-area {
+    height: 200px !important;
+
+    .display-placeholder {
+      font-size: 14px !important;
+    }
+  }
+
+  .robot-body {
+    width: 80px !important;
+    height: 80px !important;
+
+    .robot-head {
+      width: 28px !important;
+      height: 20px !important;
+      top: -10px !important;
+    }
+
+    .robot-wheels {
+      width: 100px !important;
+      bottom: -20px !important;
+
+      .wheel {
+        width: 16px !important;
+        height: 16px !important;
+      }
+    }
+
+    .robot-arm {
+      width: 40px !important;
+      height: 6px !important;
+      right: -20px !important;
+
+      &::after {
+        width: 8px !important;
+        height: 8px !important;
+        right: -4px !important;
+      }
+    }
+  }
+}
