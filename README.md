@@ -1,247 +1,121 @@
-# React Template
+# React Template 现代前端项目模板
 
-一个功能完整的 React 项目模板，集成了现代前端开发的最佳实践。
+本项目是基于 Vite + React + TypeScript 的现代化前端工程模板，集成 Ant Design、UnoCSS、Sass、Axios、ESLint、Prettier 等主流技术，适合中大型企业级应用开发。
 
-## 🚀 技术栈
+---
 
-- **React 18** - 最新的 React 版本
-- **TypeScript** - 类型安全的 JavaScript
-- **Vite** - 快速的构建工具
-- **Ant Design** - 企业级 UI 设计语言和组件库
-- **React Router** - 客户端路由
-- **UnoCSS** - 原子化 CSS 框架
-- **Sass** - CSS 预处理器
-- **Axios** - HTTP 客户端
-- **ESLint** - 代码质量检查
-- **Prettier** - 代码格式化
+## 🏗️ 架构设计
 
-## ✨ 功能特性
+- **Vite**：极速开发与构建，支持 HMR、代码分包、代理等。
+- **React 18 + TypeScript**：函数组件、Hooks、类型安全。
+- **Ant Design**：企业级 UI 组件库，统一设计风格。
+- **UnoCSS**：原子化 CSS，极致灵活的样式方案。
+- **Sass**：CSS 预处理，支持变量、嵌套、全局样式。
+- **Axios**：统一封装请求，支持拦截器、全局错误处理。
+- **ESLint + Prettier**：代码规范与自动格式化，保障团队协作。
+- **路由保护/认证上下文**：支持登录校验、页面跳转、权限控制。
+- **代码分包优化**：Vite + Rollup 手动分包，提升首屏加载。
 
-- 📦 **开箱即用** - 完整的项目配置，无需额外设置
-- 🎯 **TypeScript 严格模式** - 确保代码类型安全
-- 🎨 **Ant Design** - 现代化的 UI 组件库
-- 📱 **移动端适配** - px2rem 自动转换，支持响应式设计
-- 🔥 **热更新** - 极速的开发体验
-- **完善的开发工具** - ESLint、Prettier、TypeScript 配置
-- 📁 **清晰的项目结构** - 易于维护和扩展
-- 🔧 **路径别名** - 便捷的模块导入
-- 🌐 **代理服务器** - 本地开发 API 代理
+---
 
-## 📁 项目结构
+## 📁 目录结构
 
-\`\`\`
+```
 src/
-├── api/ # API 接口定义
-├── assets/ # 静态资源
-├── components/ # 可复用组件
-│ ├── Layout/ # 布局组件
-│ └── ...
-├── config/ # 项目配置
-├── constants/ # 常量定义
-├── hooks/ # 自定义 Hooks
-├── pages/ # 页面组件
-│ ├── Home/
-│ └── About/
-├── services/ # 服务层 (Axios 配置)
-├── styles/ # 样式文件
-│ ├── global.css
-│ └── variables.scss
-├── types/ # TypeScript 类型定义
-├── utils/ # 工具函数
-│ └── mobile.ts # 移动端适配工具
-└── main.tsx # 应用入口
-\`\`\`
+├── api/                # API 接口定义与请求封装
+├── assets/             # 静态资源
+├── components/         # 通用组件（如 Layout、Button、ProtectedRoute 等）
+├── config/             # 全局配置（如主题、环境变量）
+├── constants/          # 常量、正则、消息等
+├── contexts/           # React Context（如 AuthContext）
+├── hooks/              # 自定义 Hooks（如 useLocalStorage/useDebounce）
+├── pages/              # 页面组件（Home、Dashboard、OperationPanel 等）
+├── services/           # 业务服务层（如 axios 实例、统一请求）
+├── styles/             # 全局样式、Sass 变量
+├── types/              # TypeScript 类型定义
+├── utils/              # 工具函数（如格式化、深拷贝、移动端适配）
+├── main.tsx            # 应用入口
+└── App.tsx             # 路由与全局布局
+```
 
-## 🛠 开发
+---
 
-### 环境要求
-
-- Node.js >= 16
-- npm >= 7
-
-### 安装依赖
-
-\`\`\`bash
-npm install
-\`\`\`
-
-### 启动开发服务器
-
-\`\`\`bash
-npm run dev
-\`\`\`
-
-访问 http://localhost:3000
-
-### 构建生产版本
-
-\`\`\`bash
-npm run build
-\`\`\`
-
-### 预览构建结果
-
-\`\`\`bash
-npm run preview
-\`\`\`
-
-### 代码检查
-
-\`\`\`bash
-npm run lint
-\`\`\`
-
-### 代码格式化
-
-\`\`\`bash
-npm run format
-\`\`\`
-
-### TypeScript 类型检查
-
-\`\`\`bash
-npm run type-check
-\`\`\`
-
-## ⚙️ 配置说明
+## ⚙️ 基础配置
 
 ### 路径别名
+- 见 `vite.config.ts` 和 `tsconfig.json`，如 `@/components` → `src/components`，支持 VSCode 智能跳转。
 
-项目配置了以下路径别名，在导入模块时更加便捷：
+### 代理与环境变量
+- `vite.config.ts` 配置 `/api` 代理到后端，支持本地开发跨域。
+- `.env.development`、`.env.production` 支持多环境变量注入。
 
-- \`@/\` → \`src/\`
-- \`@/components\` → \`src/components\`
-- \`@/pages\` → \`src/pages\`
-- \`@/hooks\` → \`src/hooks\`
-- \`@/utils\` → \`src/utils\`
-- \`@/types\` → \`src/types\`
-- \`@/api\` → \`src/api\`
-- \`@/services\` → \`src/services\`
-- \`@/store\` → \`src/store\`
-- \`@/styles\` → \`src/styles\`
-- \`@/constants\` → \`src/constants\`
-- \`@/config\` → \`src/config\`
+### 样式体系
+- 全局样式入口：`src/styles/global.css`
+- 变量/主题：`src/styles/variables.scss`，可全局引入
+- UnoCSS 原子类、Sass 混用，灵活高效
 
-### 开发代理
+### 代码规范
+- ESLint + Prettier 统一风格，支持一键修复（`npm run lint:fix`、`npm run format`）
+- TypeScript 严格模式，类型安全
 
-开发环境下，所有 \`/api\` 请求会被代理到 \`http://localhost:8000\`。
+---
 
-### 环境变量
+## 🔌 关键插件与用法
 
-- \`.env.development\` - 开发环境变量
-- \`.env.production\` - 生产环境变量
+### 1. Ant Design
+- 直接引入组件即可使用，支持主题定制
+- 例：
+```tsx
+import { Button, Card } from 'antd'
+<Card title="示例"><Button type="primary">主按钮</Button></Card>
+```
 
-### 移动端适配
+### 2. UnoCSS
+- 支持 Tailwind 风格原子类，极致灵活
+- 例：
+```tsx
+<div className="flex items-center p-4 bg-blue-500 text-white">Hello</div>
+```
 
-项目集成了 px2rem 自动转换功能：
-
-- 设计稿宽度：375px
-- rem 基准值：37.5
-- 自动转换最小值：2px
-
-## 📝 使用指南
-
-### 创建新页面
-
-1. 在 \`src/pages\` 目录下创建新的页面组件
-2. 在 \`src/App.tsx\` 中添加路由配置
-
-### 添加全局样式
-
-在 \`src/styles/global.css\` 中添加全局样式。
-
-### 使用 Ant Design
-
-项目已集成 Ant Design，可以直接使用：
-
-\`\`\`jsx
-import { Button, Card, Space } from 'antd'
-
-const MyComponent = () => {
-return (
-<Card title="示例">
-<Space>
-<Button type="primary">主按钮</Button>
-<Button>默认按钮</Button>
-</Space>
-</Card>
-)
-}
-\`\`\`
-
-### 使用 UnoCSS
-
-项目集成了 UnoCSS，可以使用原子化 CSS 类名：
-
-\`\`\`jsx
-
-<div className="flex items-center justify-center p-4 bg-blue-500 text-white rounded-lg">
-  Hello World
-</div>
-\`\`\`
-
-### API 请求
-
-使用封装好的 Axios 实例：
-
-\`\`\`typescript
+### 3. Axios 封装
+- 统一拦截器、错误处理，支持 get/post/put/delete/patch
+- 例：
+```ts
 import { get, post } from '@/services/request'
+const data = await get('/api/user')
+```
 
-// GET 请求
-const fetchUsers = async () => {
-const response = await get('/users')
-return response
-}
+### 4. 路由与认证
+- `src/contexts/AuthContext.tsx` 提供全局登录状态
+- `ProtectedRoute` 组件实现路由保护，未登录自动跳转
 
-// POST 请求
-const createUser = async (userData: any) => {
-const response = await post('/users', userData)
-return response
-}
-\`\`\`
+### 5. 代码分包
+- `vite.config.ts` 配置 `manualChunks`，实现依赖分组，优化首屏加载
 
-### 自定义 Hooks
+---
 
-项目提供了一些常用的自定义 Hooks：
+## 🚀 常用命令
 
-\`\`\`typescript
-import { useLocalStorage, useDebounce, useWindowSize } from '@/hooks'
+- `npm install`         安装依赖
+- `npm run dev`         启动开发服务器
+- `npm run build`       构建生产包
+- `npm run preview`     本地预览构建产物
+- `npm run lint`        代码检查
+- `npm run lint:fix`    自动修复格式/规范
+- `npm run format`      代码格式化
+- `npm run type-check`  TypeScript 类型检查
 
-const MyComponent = () => {
-const [value, setValue] = useLocalStorage('key', 'defaultValue')
-const debouncedValue = useDebounce(inputValue, 300)
-const { width, height } = useWindowSize()
+---
 
-// ...
-}
-\`\`\`
+## 📝 开发建议
 
-## 🔧 自定义配置
+- 推荐使用 VSCode + Volar/ESLint/Prettier 插件，获得最佳开发体验
+- 业务页面建议按模块拆分，组件复用优先放入 `components/`
+- 全局状态建议用 React Context 或 Redux（可按需集成）
+- 移动端适配建议用 rem + UnoCSS 原子类
 
-### 修改主题色
+---
 
-在 \`src/config/index.ts\` 中修改主题配置：
+## 📄 License
 
-\`\`\`typescript
-export const THEME_CONFIG = {
-primaryColor: '#1890ff', // 修改主色调
-// ...
-}
-\`\`\`
-
-### 添加新的路径别名
-
-在 \`vite.config.ts\` 和 \`tsconfig.json\` 中添加新的别名配置。
-
-### 修改代理配置
-
-在 \`vite.config.ts\` 中修改 server.proxy 配置。
-
-## 📄 许可证
-
-MIT License
-
-## 🤝 贡献
-
-欢迎提交 Issue 和 Pull Request！
-react基础模板
+MIT
