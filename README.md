@@ -43,18 +43,22 @@ src/
 ## ⚙️ 基础配置
 
 ### 路径别名
+
 - 见 `vite.config.ts` 和 `tsconfig.json`，如 `@/components` → `src/components`，支持 VSCode 智能跳转。
 
 ### 代理与环境变量
+
 - `vite.config.ts` 配置 `/api` 代理到后端，支持本地开发跨域。
 - `.env.development`、`.env.production` 支持多环境变量注入。
 
 ### 样式体系
+
 - 全局样式入口：`src/styles/global.css`
 - 变量/主题：`src/styles/variables.scss`，可全局引入
 - UnoCSS 原子类、Sass 混用，灵活高效
 
 ### 代码规范
+
 - ESLint + Prettier 统一风格，支持一键修复（`npm run lint:fix`、`npm run format`）
 - TypeScript 严格模式，类型安全
 
@@ -63,47 +67,57 @@ src/
 ## 🔌 关键插件与用法
 
 ### 1. Ant Design
+
 - 直接引入组件即可使用，支持主题定制
 - 例：
+
 ```tsx
 import { Button, Card } from 'antd'
-<Card title="示例"><Button type="primary">主按钮</Button></Card>
+;<Card title='示例'>
+  <Button type='primary'>主按钮</Button>
+</Card>
 ```
 
 ### 2. UnoCSS
+
 - 支持 Tailwind 风格原子类，极致灵活
 - 例：
+
 ```tsx
-<div className="flex items-center p-4 bg-blue-500 text-white">Hello</div>
+<div className='flex items-center p-4 bg-blue-500 text-white'>Hello</div>
 ```
 
 ### 3. Axios 封装
+
 - 统一拦截器、错误处理，支持 get/post/put/delete/patch
 - 例：
+
 ```ts
 import { get, post } from '@/services/request'
 const data = await get('/api/user')
 ```
 
 ### 4. 路由与认证
+
 - `src/contexts/AuthContext.tsx` 提供全局登录状态
 - `ProtectedRoute` 组件实现路由保护，未登录自动跳转
 
 ### 5. 代码分包
+
 - `vite.config.ts` 配置 `manualChunks`，实现依赖分组，优化首屏加载
 
 ---
 
 ## 🚀 常用命令
 
-- `npm install`         安装依赖
-- `npm run dev`         启动开发服务器
-- `npm run build`       构建生产包
-- `npm run preview`     本地预览构建产物
-- `npm run lint`        代码检查
-- `npm run lint:fix`    自动修复格式/规范
-- `npm run format`      代码格式化
-- `npm run type-check`  TypeScript 类型检查
+- `npm install` 安装依赖
+- `npm run dev` 启动开发服务器
+- `npm run build` 构建生产包
+- `npm run preview` 本地预览构建产物
+- `npm run lint` 代码检查
+- `npm run lint:fix` 自动修复格式/规范
+- `npm run format` 代码格式化
+- `npm run type-check` TypeScript 类型检查
 
 ---
 

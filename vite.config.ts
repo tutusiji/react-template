@@ -32,7 +32,7 @@ export default defineConfig({
   css: {
     preprocessorOptions: {
       scss: {
-        additionalData: `@import "@/styles/variables.scss";`,
+        additionalData: `@use "@/styles/variables.scss" as *;`,
         javascriptEnabled: true,
       },
     },
@@ -42,7 +42,7 @@ export default defineConfig({
   },
   server: {
     port: 3000,
-    open: true,
+    open: false, // 禁用自动打开浏览器，避免刷新时跳转到根路径
     proxy: {
       '/api': {
         target: 'http://localhost:8000',

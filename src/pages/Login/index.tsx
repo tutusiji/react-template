@@ -1,8 +1,9 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Form, Input, Button, message, Checkbox } from 'antd'
 import { UserOutlined, LockOutlined } from '@ant-design/icons'
 import { useNavigate, useLocation } from 'react-router-dom'
 import { useAuth } from '@/contexts/AuthContext'
+import logoImage from '@/assets/images/logo.png'
 import './index.scss'
 
 interface LoginForm {
@@ -13,9 +14,15 @@ interface LoginForm {
 
 const Login: React.FC = () => {
   const [loading, setLoading] = useState(false)
+  const [form] = Form.useForm()
   const navigate = useNavigate()
   const location = useLocation()
   const { login } = useAuth()
+
+  useEffect(() => {
+    // 页面加载时自动填充测试账号
+    form.setFieldsValue({ username: 'admin', password: '123456' })
+  }, [form])
 
   const onFinish = async (values: LoginForm) => {
     setLoading(true)
@@ -52,27 +59,7 @@ const Login: React.FC = () => {
       <div className='login-left'>
         <div className='logo-section'>
           <div className='logo'>
-            <img src='/logo.svg' alt='Logo' />
-          </div>
-          <h1 className='brand-title'>React Template</h1>
-          <p className='brand-subtitle'>现代化前端开发模板</p>
-          <div className='feature-list'>
-            <div className='feature-item'>
-              <span className='feature-icon'>⚡</span>
-              <span>基于 Vite 构建，极速开发体验</span>
-            </div>
-            <div className='feature-item'>
-              <span className='feature-icon'>🎨</span>
-              <span>集成 Ant Design + UnoCSS</span>
-            </div>
-            <div className='feature-item'>
-              <span className='feature-icon'>📱</span>
-              <span>支持移动端适配</span>
-            </div>
-            <div className='feature-item'>
-              <span className='feature-icon'>🚀</span>
-              <span>TypeScript + React 18</span>
-            </div>
+            <img src={logoImage} alt='Logo' />
           </div>
         </div>
       </div>
@@ -85,6 +72,7 @@ const Login: React.FC = () => {
           </div>
 
           <Form
+            form={form}
             name='login'
             className='login-form'
             initialValues={{ remember: true }}
@@ -139,9 +127,9 @@ const Login: React.FC = () => {
             </Form.Item>
           </Form>
 
-          <div className='login-tips'>
+          {/* <div className='login-tips'>
             <p>测试账号：admin / 123456</p>
-          </div>
+          </div> */}
         </div>
       </div>
     </div>

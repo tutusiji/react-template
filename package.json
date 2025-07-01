@@ -1,7 +1,8 @@
 {
   "name": "react-template",
+  "description": "这是一个现代化的 React 项目模板，集成了最新的前端开发工具和最佳实践。",
   "private": true,
-  "version": "0.0.0",
+  "version": "1.0.2",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -20,9 +21,11 @@
     "axios": "^1.10.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
-    "react-router-dom": "^6.24.1"
+    "react-router-dom": "^6.24.1",
+    "zustand": "^5.0.6"
   },
   "devDependencies": {
+    "@iconify/utils": "^2.3.0",
     "@types/node": "^24.0.4",
     "@types/react": "^18.3.3",
     "@types/react-dom": "^18.3.0",

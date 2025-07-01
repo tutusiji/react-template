@@ -45,13 +45,89 @@ code {
   transition: box-shadow 0.3s ease-in-out;
 }
 
-/* 焦点样式 */
+/* 焦点样式优化 */
+/* 移除所有元素的默认 outline */
 *:focus {
+  outline: none;
+}
+
+/* 为键盘导航用户保留焦点指示器 */
+*:focus-visible {
   outline: 2px solid #3b82f6;
   outline-offset: 2px;
+}
+
+/* 按钮特殊处理 */
+button:focus {
+  outline: none;
+}
+
+/* Ant Design 按钮焦点样式 */
+.ant-btn:focus,
+.ant-btn:active {
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+/* 为键盘用户保留 Ant Design 按钮的焦点指示器 */
+.ant-btn:focus-visible {
+  outline: 2px solid #1890ff !important;
+  outline-offset: 2px !important;
+}
+
+/* 输入框保留焦点样式 */
+input:focus,
+textarea:focus,
+select:focus {
+  outline: none;
+  border-color: #1890ff;
+  box-shadow: 0 0 0 2px rgba(24, 144, 255, 0.2);
 }
 
 /* 自定义工具类 */
 .text-balance {
   text-wrap: balance;
+}
+
+/* Ant Design 按钮样式修复 */
+.ant-btn-primary {
+  background-color: #1890ff !important;
+  border-color: #1890ff !important;
+  color: #fff !important;
+}
+
+.ant-btn-primary:hover {
+  background-color: #40a9ff !important;
+  border-color: #40a9ff !important;
+  color: #fff !important;
+}
+
+.ant-btn-primary:focus {
+  background-color: #1890ff !important;
+  border-color: #1890ff !important;
+  color: #fff !important;
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+.ant-btn-primary:active {
+  background-color: #096dd9 !important;
+  border-color: #096dd9 !important;
+  color: #fff !important;
+}
+
+/* 确保 UnoCSS 不会覆盖 Ant Design 的关键样式 */
+.ant-btn {
+  transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1) !important;
+}
+
+/* 移除所有 Ant Design 组件的焦点阴影 */
+.ant-btn:focus,
+.ant-btn:active,
+.ant-input:focus,
+.ant-input-password:focus,
+.ant-select:focus .ant-select-selector,
+.ant-picker:focus,
+.ant-picker-focused {
+  box-shadow: none !important;
 }

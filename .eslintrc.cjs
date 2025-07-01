@@ -38,6 +38,14 @@ module.exports = {
         embeddedLanguageFormatting: 'auto',
       },
     ],
+    // 引号规则 - 只警告不报错
+    quotes: [
+      'warn',
+      'single',
+      { avoidEscape: true, allowTemplateLiterals: true },
+    ],
+    'jsx-quotes': ['warn', 'prefer-single'],
+
     // 未使用的变量、函数、导入等只警告不报错
     'no-unused-vars': 'warn',
     '@typescript-eslint/no-unused-vars': 'warn',

@@ -14,6 +14,7 @@ interface User {
 interface AuthContextType {
   isAuthenticated: boolean
   user: User | null
+  isLoading: boolean
   login: (user: User) => void
   logout: () => void
 }
@@ -35,6 +36,7 @@ interface AuthProviderProps {
 export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   const [isAuthenticated, setIsAuthenticated] = useState(false)
   const [user, setUser] = useState<User | null>(null)
+  const [isLoading, setIsLoading] = useState(true)
 
   useEffect(() => {
     // 检查本地存储中的登录状态
@@ -51,6 +53,9 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
         logout()
       }
     }
+
+    // 认证状态检查完成
+    setIsLoading(false)
   }, [])
 
   const login = (userData: User) => {
@@ -68,7 +73,9 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   }
 
   return (
-    <AuthContext.Provider value={{ isAuthenticated, user, login, logout }}>
+    <AuthContext.Provider
+      value={{ isAuthenticated, user, isLoading, login, logout }}
+    >
       {children}
     </AuthContext.Provider>
   )

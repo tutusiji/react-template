@@ -1,17 +1,8 @@
 import React, { Suspense } from 'react'
 import { Routes, Route, Navigate } from 'react-router-dom'
 import { Spin } from 'antd'
-import Layout from '@/components/Layout'
-import ProtectedRoute from '@/components/ProtectedRoute'
 import { useAuth } from '@/contexts/AuthContext'
-
-// 懒加载页面组件
-const Login = React.lazy(() => import('@/pages/Login'))
-const Home = React.lazy(() => import('@/pages/Home'))
-const Dashboard = React.lazy(() => import('@/pages/Dashboard'))
-const About = React.lazy(() => import('@/pages/About'))
-const ApiDemo = React.lazy(() => import('@/components/ApiDemo'))
-const OperationPanel = React.lazy(() => import('@/pages/OperationPanel'))
+import { allRoutes, createRouteElement } from '@/router/routes'
 
 // 加载中组件
 const PageLoading: React.FC = () => (
@@ -28,67 +19,52 @@ const PageLoading: React.FC = () => (
 )
 
 function App() {
-  const { isAuthenticated } = useAuth()
+  const { isAuthenticated, isLoading } = useAuth()
+
+  // 在认证状态加载期间显示加载页面
+  if (isLoading) {
+    return <PageLoading />
+  }
 
   return (
     <Suspense fallback={<PageLoading />}>
       <Routes>
-        <Route
-          path='/login'
-          element={
-            isAuthenticated ? <Navigate to='/dashboard' replace /> : <Login />
-          }
-        />
+        {/* 根路径重定向 */}
         <Route
           path='/'
           element={
-            <ProtectedRoute>
-              <Layout>
-                <Home />
-              </Layout>
-            </ProtectedRoute>
+            isAuthenticated ? (
+              <Navigate to='/home' replace />
+            ) : (
+              <Navigate to='/login' replace />
+            )
           }
         />
+
+        {/* 登录路由特殊处理 */}
         <Route
-          path='/dashboard'
+          path='/login'
           element={
-            <ProtectedRoute>
-              <Layout>
-                <Dashboard />
-              </Layout>
-            </ProtectedRoute>
+            isAuthenticated ? (
+              <Navigate to='/home' replace />
+            ) : (
+              createRouteElement(
+                allRoutes.find(route => route.path === '/login')!
+              )
+            )
           }
         />
-        <Route
-          path='/about'
-          element={
-            <ProtectedRoute>
-              <Layout>
-                <About />
-              </Layout>
-            </ProtectedRoute>
-          }
-        />
-        <Route
-          path='/api-demo'
-          element={
-            <ProtectedRoute>
-              <Layout>
-                <ApiDemo />
-              </Layout>
-            </ProtectedRoute>
-          }
-        />
-        <Route
-          path='/operation-panel'
-          element={
-            <ProtectedRoute>
-              <Layout>
-                <OperationPanel />
-              </Layout>
-            </ProtectedRoute>
-          }
-        />
+
+        {/* 动态生成其他路由 */}
+        {allRoutes
+          .filter(route => route.path !== '/login' && route.path !== '/')
+          .map(route => (
+            <Route
+              key={route.path}
+              path={route.path}
+              element={createRouteElement(route)}
+            />
+          ))}
       </Routes>
     </Suspense>
   )
