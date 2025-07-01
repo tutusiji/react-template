@@ -126,56 +126,53 @@ const Header = () => {
   )
 
   return (
-    <header className='bg-white shadow-sm border-b'>
-      <div className='container mx-auto px-4'>
-        <div className='flex-between h-16'>
-          <div className='flex items-center'>
-            <Link to='/' className='text-xl font-bold text-primary-600'>
-              React Template
+    <header className='app-header bg-white shadow-md px-4 py-2 z-50 flex items-center justify-between'>
+      <div className='flex items-center'>
+        <Link to='/' className='flex items-center space-x-2'>
+          <img src='/logo.svg' alt='Logo' className='h-8 w-auto' />
+          <span className='text-xl font-bold text-gray-800'>
+            React Template
+          </span>
+        </Link>
+      </div>
+      <div className='flex items-center space-x-8'>
+        <nav className='flex items-center space-x-6'>
+          {/* 主要导航项 */}
+          {navigationGroups.main.items.map(route => (
+            <Link
+              key={route.path}
+              to={route.path}
+              className={getLinkClassName(route.path)}
+              title={route.description}
+            >
+              <div className='flex items-center space-x-2'>
+                {getIcon(route.meta?.icon)}
+                <span>{route.title}</span>
+              </div>
             </Link>
-          </div>
-          <div className='flex items-center space-x-8'>
-            <nav className='flex items-center space-x-6'>
-              {/* 主要导航项 */}
-              {navigationGroups.main.items.map(route => (
-                <Link
-                  key={route.path}
-                  to={route.path}
-                  className={getLinkClassName(route.path)}
-                  title={route.description}
-                >
-                  <div className='flex items-center space-x-2'>
-                    {getIcon(route.meta?.icon)}
-                    <span>{route.title}</span>
-                  </div>
-                </Link>
-              ))}
+          ))}
 
-              {/* 文档下拉菜单 */}
-              <Dropdown
-                menu={{ items: docsMenuItems }}
-                placement='bottomLeft'
-                trigger={['hover']}
-              >
-                <div
-                  className={getDropdownClassName(navigationGroups.docs.items)}
-                >
-                  <FileTextOutlined className='text-sm' />
-                  <span>文档</span>
-                  <DownOutlined className='text-xs' />
-                </div>
-              </Dropdown>
-            </nav>
-            {user && (
-              <Dropdown menu={{ items: userMenuItems }} placement='bottomRight'>
-                <Space className='cursor-pointer'>
-                  <Avatar icon={<UserOutlined />} />
-                  <span>{user.username}</span>
-                </Space>
-              </Dropdown>
-            )}
-          </div>
-        </div>
+          {/* 文档下拉菜单 */}
+          <Dropdown
+            menu={{ items: docsMenuItems }}
+            placement='bottomLeft'
+            trigger={['hover']}
+          >
+            <div className={getDropdownClassName(navigationGroups.docs.items)}>
+              <FileTextOutlined className='text-sm' />
+              <span>文档</span>
+              <DownOutlined className='text-xs' />
+            </div>
+          </Dropdown>
+        </nav>
+        {user && (
+          <Dropdown menu={{ items: userMenuItems }} placement='bottomRight'>
+            <Space className='cursor-pointer'>
+              <Avatar icon={<UserOutlined />} />
+              <span>{user.username}</span>
+            </Space>
+          </Dropdown>
+        )}
       </div>
     </header>
   )

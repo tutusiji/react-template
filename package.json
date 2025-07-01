@@ -17,11 +17,15 @@
     "analyze": "npm run build && npx vite-bundle-analyzer dist"
   },
   "dependencies": {
+    "@react-three/drei": "^9.111.0",
+    "@react-three/fiber": "^8.16.0",
+    "@types/three": "^0.166.0",
     "antd": "^5.26.2",
     "axios": "^1.10.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-router-dom": "^6.24.1",
+    "three": "^0.166.0",
     "zustand": "^5.0.6"
   },
   "devDependencies": {

@@ -34,7 +34,7 @@ function App() {
           path='/'
           element={
             isAuthenticated ? (
-              <Navigate to='/home' replace />
+              <Navigate to='/dashboard' replace />
             ) : (
               <Navigate to='/login' replace />
             )
@@ -46,7 +46,7 @@ function App() {
           path='/login'
           element={
             isAuthenticated ? (
-              <Navigate to='/home' replace />
+              <Navigate to='/dashboard' replace />
             ) : (
               createRouteElement(
                 allRoutes.find(route => route.path === '/login')!

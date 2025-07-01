@@ -168,7 +168,11 @@ const OperationPanel: React.FC<OperationPanelProps> = () => {
   }
 
   return (
-    <div className={`operation-panel ${isFullscreen ? 'fullscreen' : ''}`}>
+    <div
+      className={`operation-panel-page operation-panel ${
+        isFullscreen ? 'fullscreen' : ''
+      }`}
+    >
       {/* Canvas背景视频 */}
       <canvas ref={canvasRef} className='background-canvas' />
 

@@ -131,3 +131,45 @@ select:focus {
 .ant-picker-focused {
   box-shadow: none !important;
 }
+
+/* Layout styles */
+.layout-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color: #f0f2f5;
+}
+
+.app-header {
+  z-index: 1000;
+}
+
+.main-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.fullscreen-content {
+  height: 100vh; /* Occupy full viewport height */
+  padding: 0;
+  margin: 0;
+  overflow: hidden;
+}
+
+.container-content {
+  width: 100%;
+  max-width: 1280px; /* Or your desired max-width */
+  margin-left: auto;
+  margin-right: auto;
+  padding: 2rem 1rem;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  /* overflow: hidden; Prevent body scrolling */
+}

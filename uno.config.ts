@@ -11,7 +11,8 @@ import { FileSystemIconLoader } from '@iconify/utils/lib/loader/node-loaders'
 export default defineConfig({
   presets: [
     // 使用 presetWind 来兼容 Tailwind CSS 写法
-    presetWind(),
+    presetWind({ preflight: false }),
+
     // 保留 presetUno 以获得额外的实用工具
     presetUno(),
     presetAttributify(),
